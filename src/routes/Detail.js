@@ -12,12 +12,12 @@ function DetailComponent(props){
         <div className="container">
           <div className="row">
             <div className="col-md-6">
-              <img src={shoesInfo[0].img} width="100%" />
+              <img src={shoesInfo.img} width="100%" />
             </div>
             <div className="col-md-6">
-              <h4 className="pt-5">{shoesInfo[0].title}</h4>
-              <p>{shoesInfo[0].content}</p>
-              <p>{shoesInfo[0].price}</p>
+              <h4 className="pt-5">{shoesInfo.title}</h4>
+              <p>{shoesInfo.content}</p>
+              <p>{shoesInfo.price}</p>
               <button className="btn btn-danger">주문하기</button> 
             </div>
           </div>

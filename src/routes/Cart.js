@@ -5,7 +5,6 @@ function Cart(props){
         <img src={props.shoesData.img} width="80%" onClick={()=>{props.navigate('/detail/' + props.shoesData.id)}}/>
         <h4>{props.shoesData.title}</h4>
         <p>{props.shoesData.price}</p>
-  
     </div>
   )
 }
