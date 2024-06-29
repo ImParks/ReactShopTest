@@ -25,7 +25,6 @@ function DetailComponent(props){
   // mount, update 시에 작동
   useEffect(()=>{
     let timer = setTimeout(()=>{setTime(new Date())},1000);
-
     //처음 mount 일땐 작동하지않고 update 또는 unMount 시에 작동
     return()=>{
       console.log(1);
@@ -56,6 +55,12 @@ function DetailComponent(props){
       setTage('');
     }
   },[])
+
+  useEffect(()=>{
+
+    let a = setTimeout(()=>{setAlert(false)},2000);
+
+  },[])
   //숙제 1번 문자 입력시 팝업창
 
 
@@ -71,7 +76,7 @@ function DetailComponent(props){
             2초이내 구매시 할인
           </div>
           )
-          }
+            }
           <div className="row">
             <div className="col-md-6">
               <img src={url} width="100%" />
