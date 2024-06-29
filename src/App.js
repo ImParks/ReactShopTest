@@ -8,6 +8,7 @@ import data from './data.js';
 import DetailComponent from './routes/Detail.js';
 import About from './routes/About.js';
 import Event from './routes/Event.js';
+import Card from './routes/Card.js';
 import Cart from './routes/Cart.js';
 import axios from 'axios';
 
@@ -19,7 +20,7 @@ function App() {
   let [urlNumver,setUrlNumver] = useState(0);
   let [alert,setAlert] = useState(false);
   let [mag,setMag] = useState('');
-  
+  let [cart,SetCart] = useState([]);
   let axiosGet = () =>{
     setAlert(true) 
     setMag('로딩중');
@@ -71,12 +72,14 @@ function App() {
 
           <Route path='' element={<HomeComponent shoes={shoes} navigate={navigate} axiosGet={axiosGet} alert={alert} mag={mag}/>}/>
 
-          <Route path='/detail/:id' element={<DetailComponent shoes={shoes}/>}/> 
+          <Route path='/detail/:id' element={<DetailComponent shoes={shoes} cart={cart}/>}/> 
 
           <Route path='/about/*' element={<About />} />
 
           <Route path='/event/*' element={<Event/>}/>
           
+          <Route path='/cart' element={<Cart/>} />
+
           <Route path='*' element={<div>없는 페이지입니다.</div>}/>
         </Route>
       </Routes>
@@ -116,7 +119,7 @@ function HomeComponent(props){
         {props.shoes.map(function(shoesData,index){
           return(
           <Col sm key={index}>
-            <Cart shoesData={shoesData} navigate={props.navigate}/>
+            <Card shoesData={shoesData} navigate={props.navigate}/>
           </Col>
           )})}
       </Row>

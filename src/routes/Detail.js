@@ -59,7 +59,10 @@ function DetailComponent(props){
   useEffect(()=>{
 
     let a = setTimeout(()=>{setAlert(false)},2000);
+    return()=>{
+      clearTimeout(a);
 
+    }
   },[])
   //숙제 1번 문자 입력시 팝업창
 

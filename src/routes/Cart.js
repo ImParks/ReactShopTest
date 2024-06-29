@@ -1,12 +1,39 @@
-import {Routes,Route,Link,useNavigate,Outlet} from 'react-router-dom';
+import { Table } from "react-bootstrap";
+
+
+
 function Cart(props){
-  let url = "https://codingapple1.github.io/shop/shoes" + (props.shoesData.id + 1) + ".jpg"
+
+
+
     return(
-    <div>
-        <img src= {url} width="80%" onClick={()=>{props.navigate('/detail/' + props.shoesData.id)}}/>
-        <h4>{props.shoesData.title}</h4>
-        <p>{props.shoesData.price} 원</p>
-    </div>
-  )
+        <>
+        <div>
+            <Table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>상품명</th>
+                        <th>수량</th>
+                        <th>변경하기</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>안녕</td>
+                        <td>안녕</td>
+                        <td>안녕</td>
+                    </tr>
+                </tbody>
+            </Table>
+        </div>
+        </>
+    )
 }
+
+
 export default Cart;
+
+
+
