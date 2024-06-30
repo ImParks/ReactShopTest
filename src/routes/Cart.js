@@ -1,10 +1,10 @@
 import { Table } from "react-bootstrap";
+import { useSelector } from "react-redux";
 
 
 
 function Cart(props){
-
-
+let stock = useSelector((state)=>state.stock)
 
     return(
         <>
@@ -19,12 +19,18 @@ function Cart(props){
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>안녕</td>
-                        <td>안녕</td>
-                        <td>안녕</td>
-                    </tr>
+                    {stock.map(function(stockData,index){
+                        return(
+                            <tr>
+                            <td>{index}</td>
+                            <td>{stockData.name}</td>
+                            <td>{stockData.count}</td>
+                            <td><button>+</button><button>-</button></td>
+                            </tr>
+                            )
+                        })
+
+                    }
                 </tbody>
             </Table>
         </div>
