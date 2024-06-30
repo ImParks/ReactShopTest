@@ -1,6 +1,6 @@
 import { Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { plusStock ,minusStock} from "../store/stokSlice.js"
+import { plusStock ,minusStock,deleteStock} from "../store/stokSlice.js"
 
 
 function Cart(props){
@@ -16,6 +16,7 @@ let dispatch = useDispatch()
                         <th>상품명</th>
                         <th>수량</th>
                         <th>변경하기</th>
+                        <th>상품삭제</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -25,6 +26,7 @@ let dispatch = useDispatch()
                         <td>{stockData.name}</td>
                         <td>{stockData.count}</td>
                         <td><button onClick={()=> dispatch(plusStock(stockData.id))}>+</button><button onClick={()=> dispatch(minusStock(stockData.id))}>-</button></td>
+                        <td><button onClick={()=> dispatch(deleteStock(stockData.id))}>삭제</button></td>
                         </tr>
                         )
                     }
