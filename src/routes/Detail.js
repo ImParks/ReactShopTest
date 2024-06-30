@@ -53,6 +53,11 @@ function DetailComponent(props){
   useEffect(()=>{
 
     let a = setTimeout(()=>{setTage('end')},100)
+    let RecentlyProduct = JSON.parse(localStorage.getItem('RecentlyProduct'))
+    
+    if(RecentlyProduct.findIndex(x => x.id === shoesInfo.id) === -1){
+    localStorage.setItem('RecentlyProduct',JSON.stringify([...RecentlyProduct,shoesInfo]))
+  }
 
     return()=>{
       clearTimeout(a);

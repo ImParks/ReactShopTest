@@ -2,13 +2,34 @@
   text-align: center;
 }
 
+.main{
+display: flex;
+height: 300px;
+width: 100%;
+}
+
 .main-bg{
-  height: 300px;
+  height: 100%;
+  width: 70%;
   background-image: url("https://codingapple1.github.io/shop/shoes1.jpg");
   background-size: cover;
   background-position: center;
 
+}
+.main-right{
+  width: 30%;
+  height: 100%;
+  overflow-y :scroll ;
+}
+.main-right-box{
+  height: 30px;
+  width: 100%;
+  display: flex;
+}
 
+.productImg img{
+  height: 30px;
+  width: 30px;
 }
 
 .start{
