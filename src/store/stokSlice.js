@@ -15,10 +15,20 @@ reducers : {
  minusStock(state,action){
     let index = state.findIndex(x => x.id == action.payload)
     state[index].count -= 1
+    if(state[index].count <= 0){
+      state.splice(index,1)
+    }
  },
  addStock(state,action){
-   let index = state.findIndex(x=> x.id == action.payload)
-   console.log(action.payload.id)
+   let index = state.findIndex(x=> x.id == action.payload.shoesInfo.id)
+   if(index !== -1){
+      state[index].count += 1
+   } else {
+      let shoes = action.payload.shoesInfo
+      let copy = [...state,{id : shoes.id,name : shoes.title,count : 1}]
+      return copy
+   }
+
  }
  
 
