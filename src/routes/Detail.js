@@ -51,16 +51,23 @@ function DetailComponent(props){
   },[textBox])
   
   useEffect(()=>{
-
-    let a = setTimeout(()=>{setTage('end')},100)
+    // 유저가 로컬스토리지 강제 삭제할때 예외처리 로컬스토리지에 아이템이 없을때 새로 만들어줌
+    if(localStorage.getItem('RecentlyProduct') === null ){
+      localStorage.setItem('RecentlyProduct', '[]')
+    }
     let RecentlyProduct = JSON.parse(localStorage.getItem('RecentlyProduct'))
-    
+      // 아이디를 검사해서 아이디가 중복되는게 없으면 로컬스토리지에 추가
     if(RecentlyProduct.findIndex(x => x.id === shoesInfo.id) === -1){
-    localStorage.setItem('RecentlyProduct',JSON.stringify([...RecentlyProduct,shoesInfo]))
-  }
+      localStorage.setItem('RecentlyProduct',JSON.stringify([...RecentlyProduct,shoesInfo]))
+    }
+    // 애니메이션 타이머
+    let a = setTimeout(()=>{setTage('end')},100)
+
+
 
     return()=>{
       clearTimeout(a);
+
       setTage('');
     }
   },[])
@@ -75,7 +82,7 @@ function DetailComponent(props){
   },[])
   //숙제 1번 문자 입력시 팝업창
 
-
+ 
 
     return(
       <>

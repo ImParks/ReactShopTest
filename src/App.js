@@ -67,7 +67,9 @@ function App() {
   }, [alert])
 
   useEffect(() => {
+    if(localStorage.getItem('RecentlyProduct') === null){
     localStorage.setItem('RecentlyProduct', '[]')
+  }
   }, [])
 
   return (
@@ -120,7 +122,11 @@ function TopBar(props) {
 function HomeComponent(props) {
   let [recentlyProduct, setRecentlyProduct] = useState([])
   useEffect(() => {
+    if(JSON.parse(localStorage.getItem('RecentlyProduct'))!= null){
     setRecentlyProduct(JSON.parse(localStorage.getItem('RecentlyProduct')))
+  } else {
+    localStorage.setItem('RecentlyProduct', '[]')
+  }
   },[])
 
 
@@ -130,7 +136,7 @@ function HomeComponent(props) {
         <div className='main-bg'>
         </div>
         <div className='main-right'>
-        {recentlyProduct.map((product, index) =>
+            {recentlyProduct.map((product, index) =>
             <div className='main-right-box' key={index}>
               <div className='productImg'>
                 <img src={"https://codingapple1.github.io/shop/shoes" + (product.id + 1) + ".jpg"}/>
@@ -139,6 +145,7 @@ function HomeComponent(props) {
             </div>
           )
           }
+        
         </div>
       </div>
       <div className='container'>
