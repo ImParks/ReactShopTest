@@ -1,11 +1,11 @@
 import { Table } from "react-bootstrap";
-import { useSelector } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
+import { addStock } from "./../store.js"
 
 
 function Cart(props){
 let stock = useSelector((state)=>state.stock)
-
+let dispatch = useDispatch()
     return(
         <>
         <div>
@@ -19,17 +19,14 @@ let stock = useSelector((state)=>state.stock)
                     </tr>
                 </thead>
                 <tbody>
-                    {stock.map(function(stockData,index){
-                        return(
-                            <tr>
-                            <td>{index}</td>
-                            <td>{stockData.name}</td>
-                            <td>{stockData.count}</td>
-                            <td><button>+</button><button>-</button></td>
-                            </tr>
-                            )
-                        })
-
+                    {stock.map((stockData,index)=>
+                        <tr key={index}>
+                        <td>{index + 1}</td>
+                        <td>{stockData.name}</td>
+                        <td>{stockData.count}</td>
+                        <td><button onClick={()=> dispatch(addStock())}>+</button><button>-</button></td>
+                        </tr>
+                        )
                     }
                 </tbody>
             </Table>

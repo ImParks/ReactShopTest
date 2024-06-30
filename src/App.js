@@ -116,12 +116,12 @@ function HomeComponent(props){
     </div>
     <div className='container'>
       <Row>
-        {props.shoes.map(function(shoesData,index){
-          return(
+        {props.shoes.map((shoesData,index)=>
           <Col sm key={index}>
             <Card shoesData={shoesData} navigate={props.navigate}/>
           </Col>
-          )})}
+          )
+        }
       </Row>
       </div>
       {props.alert&&(
