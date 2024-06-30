@@ -1,6 +1,6 @@
 import { Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { addStock } from "./../store.js"
+import { plusStock ,minusStock} from "../store/stokSlice.js"
 
 
 function Cart(props){
@@ -24,7 +24,7 @@ let dispatch = useDispatch()
                         <td>{index + 1}</td>
                         <td>{stockData.name}</td>
                         <td>{stockData.count}</td>
-                        <td><button onClick={()=> dispatch(addStock())}>+</button><button>-</button></td>
+                        <td><button onClick={()=> dispatch(plusStock(stockData.id))}>+</button><button onClick={()=> dispatch(minusStock(stockData.id))}>-</button></td>
                         </tr>
                         )
                     }
@@ -34,6 +34,7 @@ let dispatch = useDispatch()
         </>
     )
 }
+
 
 
 export default Cart;

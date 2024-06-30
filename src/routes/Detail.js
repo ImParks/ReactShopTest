@@ -2,7 +2,8 @@ import {useParams} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import {Nav} from 'react-bootstrap';
 import styled from 'styled-components';
-import data from '../data';
+import {addStock} from '../store/stokSlice.js'
+import { useDispatch } from 'react-redux';
 
 
 
@@ -12,7 +13,10 @@ function DetailComponent(props){
 
   let {id} = useParams();
   id = parseInt(id, 10);
-  let shoesInfo = props.shoes.filter(shoe => shoe.id === id)
+  let shoesInfo = props.shoes.find(shoe => shoe.id === id)
+
+
+
   let [alert,setAlert] = useState(true);
   let [intAlert,setIntAlert] = useState(false);
   let [time,setTime] = useState(new Date());
@@ -21,7 +25,7 @@ function DetailComponent(props){
   let [tap,setTap] = useState(0);
   let [tage,setTage] = useState(0);
   let url = "https://codingapple1.github.io/shop/shoes" + (id+1) + ".jpg"
-
+  let dispatch = useDispatch();
   // mount, update 시에 작동
   useEffect(()=>{
     let timer = setTimeout(()=>{setTime(new Date())},1000);
@@ -91,10 +95,10 @@ function DetailComponent(props){
               </div>
               )}
               <input type='text' onChange={(e) => {setTextBox(e.target.value)}    }/>
-              <h4 className="pt-5">{shoesInfo[0].title}</h4>
-              <p>{shoesInfo[0].content}</p>
-              <p>{shoesInfo[0].price}원</p>
-              <button className="btn btn-danger">주문하기</button> 
+              <h4 className="pt-5">{shoesInfo.title}</h4>
+              <p>{shoesInfo.content}</p>
+              <p>{shoesInfo.price}원</p>
+              <button className="btn btn-danger" onClick={()=>dispatch(addStock({shoesInfo}))}>주문하기</button> 
             </div>
           </div>
           <Nav variant='tabs' defaultActiveKey="link0">

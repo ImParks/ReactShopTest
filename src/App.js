@@ -98,6 +98,7 @@ function TopBar(props){
           <Nav className="me-auto">
             <Nav.Link onClick={()=>{props.navigate('/')}}>Home</Nav.Link>
             <Nav.Link onClick={()=>{props.navigate('/event')}}>Event</Nav.Link>
+            <Nav.Link onClick={()=>{props.navigate('/cart')}}>cart</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
