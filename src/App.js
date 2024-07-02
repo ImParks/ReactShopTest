@@ -2,16 +2,19 @@ import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Navbar, Container, Nav, Row, Col } from 'react-bootstrap';
-import { useEffect, useState } from 'react';
+import { Suspense, lazy, useEffect, useState } from 'react';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 import data from './data.js';
-import DetailComponent from './routes/Detail.js';
+//import DetailComponent from './routes/Detail.js';
 import About from './routes/About.js';
 import Event from './routes/Event.js';
 import Card from './routes/Card.js';
 import Cart from './routes/Cart.js';
 import axios from 'axios';
 import { useQuery } from 'react-query';
+
+const DetailComponent = lazy(()=> import('./routes/Detail.js'))
+
 
 function App() {
 
@@ -82,7 +85,7 @@ function App() {
   return (
     <div className="App">
 
-
+<Suspense fallback={<div>로딩</div>}>
       <Routes>
         <Route path='/' element={<TopBar navigate={navigate} />} >
 
@@ -99,7 +102,7 @@ function App() {
           <Route path='*' element={<div>없는 페이지입니다.</div>} />
         </Route>
       </Routes>
-
+      </Suspense>
 
     </div>
   )
