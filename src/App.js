@@ -67,9 +67,9 @@ function App() {
   }, [alert])
 
   useEffect(() => {
-    if(localStorage.getItem('RecentlyProduct') === null){
-    localStorage.setItem('RecentlyProduct', '[]')
-  }
+    if (localStorage.getItem('RecentlyProduct') === null) {
+      localStorage.setItem('RecentlyProduct', '[]')
+    }
   }, [])
 
   return (
@@ -122,12 +122,12 @@ function TopBar(props) {
 function HomeComponent(props) {
   let [recentlyProduct, setRecentlyProduct] = useState([])
   useEffect(() => {
-    if(JSON.parse(localStorage.getItem('RecentlyProduct'))!= null){
-    setRecentlyProduct(JSON.parse(localStorage.getItem('RecentlyProduct')))
-  } else {
-    localStorage.setItem('RecentlyProduct', '[]')
-  }
-  },[])
+    if (JSON.parse(localStorage.getItem('RecentlyProduct')) != null) {
+      setRecentlyProduct(JSON.parse(localStorage.getItem('RecentlyProduct')))
+    } else {
+      localStorage.setItem('RecentlyProduct', '[]')
+    }
+  }, [])
 
 
   return (
@@ -136,22 +136,22 @@ function HomeComponent(props) {
         <div className='main-bg'>
         </div>
         <div className='main-right'>
-            {recentlyProduct.map((product, index) =>
+          {recentlyProduct.map((product, index) =>
             <div className='main-right-box' key={index}>
               <div className='productImg'>
-                <img src={"https://codingapple1.github.io/shop/shoes" + (product.id + 1) + ".jpg"}/>
+                <img src={"https://codingapple1.github.io/shop/shoes" + (product.id + 1) + ".jpg"} />
               </div>
               <div className='productTitle'>{product.title}</div>
             </div>
           )
           }
-        
+
         </div>
       </div>
       <div className='container'>
         <Row>
           {props.shoes.map((shoesData, index) =>
-            
+
             <Col sm key={index}>
               <Card shoesData={shoesData} navigate={props.navigate} />
             </Col>
