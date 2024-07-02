@@ -11,6 +11,7 @@ import Event from './routes/Event.js';
 import Card from './routes/Card.js';
 import Cart from './routes/Cart.js';
 import axios from 'axios';
+import { useQuery } from 'react-query';
 
 function App() {
 
@@ -52,6 +53,12 @@ function App() {
 
     // js 기본 서버요청 fetch() 사용할땐 json 을 변환하는 과정이 필요함.
   }
+
+
+
+
+
+
   // mount, update 시에 작동
   useEffect(() => {
     let timer = setTimeout(() => {
@@ -99,6 +106,20 @@ function App() {
 }
 
 function TopBar(props) {
+
+  let result = useQuery('name',()=>
+  axios.get('https://codingapple1.github.io/userdata.json').then((a)=>
+  a.data
+  )
+)
+//데이터 출력
+//result.data
+//로딩중일떄 true
+//result.isLoading
+//에러가 났을때 이게 true
+//result.error
+
+
   return (
     <div>
       <Navbar bg='light' variant='light'>
@@ -108,6 +129,9 @@ function TopBar(props) {
             <Nav.Link onClick={() => { props.navigate('/') }}>Home</Nav.Link>
             <Nav.Link onClick={() => { props.navigate('/event') }}>Event</Nav.Link>
             <Nav.Link onClick={() => { props.navigate('/cart') }}>cart</Nav.Link>
+          </Nav>
+          <Nav className='ms-auto'>
+            {result.isLoading ? '로딩중' : (result.error ? '에러남' : result.data.name)}
           </Nav>
         </Container>
       </Navbar>
